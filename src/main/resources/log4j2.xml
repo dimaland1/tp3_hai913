@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <!-- Définir le chemin du fichier de logs -->
+    <Properties>
+        <Property name="logPath">C:/Users/jalal/IdeaProjects/tp3_hai913/logs</Property>
+    </Properties>
+
+    <!-- Définir les appenders -->
+    <Appenders>
+        <!-- Appender pour la console -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- Appender pour les logs dans un autre fichier (profiles.log) -->
+        <File name="ProfileLog" fileName="${logPath}/profiles.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <!-- Définir les loggers -->
+    <Loggers>
+        <!-- Logger pour UserProfile -->
+        <Logger name="UserProfile" level="INFO" additivity="false">
+            <AppenderRef ref="UserProfileFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- Logger pour ProfileLog -->
+        <Logger name="ProfileLogger" level="INFO" additivity="false">
+            <AppenderRef ref="ProfileLog"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- Logger racine -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
